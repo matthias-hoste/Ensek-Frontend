@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
-  private baseUrl = 'https://localhost:44394/api';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class FileUploadService {
 
     formData.append('csvFile', file);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/meter/meter-readings-uploads`, formData, {
+    const req = new HttpRequest('POST', `${environment.baseUrl}/meter/meter-readings-uploads`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
